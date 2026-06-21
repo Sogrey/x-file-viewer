@@ -242,6 +242,7 @@ const stats = [
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .btn-primary {
