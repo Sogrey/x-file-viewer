@@ -1,6 +1,6 @@
 import type { FileTypeGroup, Shortcut, ThemeMode } from '../types';
 
-export const MAX_FILE_SIZE = 50 * 1024 * 1024;
+export const MAX_FILE_SIZE = 200 * 1024 * 1024;
 
 export const FILE_TYPE_GROUPS: FileTypeGroup[] = [
   { id: 'all', label: '全部', icon: '📁' },

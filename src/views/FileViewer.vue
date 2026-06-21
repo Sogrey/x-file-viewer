@@ -444,7 +444,7 @@ function addFiles(files: File[]) {
   }
 
   if (oversizedFiles.length > 0) {
-    errorMessage.value += `以下文件超过大小限制(50MB)：${oversizedFiles.map(f => f.name).join(', ')}`;
+    errorMessage.value += `以下文件超过大小限制(200MB)：${oversizedFiles.map(f => f.name).join(', ')}`;
   }
 
   selectedFiles.value = [...selectedFiles.value, ...validFiles];
@@ -630,8 +630,8 @@ onUnmounted(() => {
     </header>
 
     <div class="main-content">
-      <button class="sidebar-toggle" @click="sidebarCollapsed = !sidebarCollapsed"
-        :title="sidebarCollapsed ? '展开侧边栏' : '收起侧边栏'">
+      <button class="sidebar-toggle" :class="{ 'is-collapsed': sidebarCollapsed }"
+        @click="sidebarCollapsed = !sidebarCollapsed" :title="sidebarCollapsed ? '展开侧边栏' : '收起侧边栏'">
         {{ sidebarCollapsed ? '▶' : '◀' }}
       </button>
       <aside class="sidebar" :class="{ 'is-collapsed': sidebarCollapsed }">
@@ -855,7 +855,6 @@ onUnmounted(() => {
 
 .sidebar-toggle {
   position: absolute;
-  left: 320px;
   top: 50%;
   transform: translateY(-50%);
   z-index: 100;
@@ -867,9 +866,16 @@ onUnmounted(() => {
   font-size: 12px;
   color: var(--text-secondary);
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.3s;
   opacity: 0;
   visibility: hidden;
+  left: 320px;
+}
+
+.sidebar-toggle.is-collapsed {
+  left: 0;
+  border-left: 1px solid var(--border-color);
+  border-radius: 4px;
 }
 
 .main-content:hover .sidebar-toggle {
